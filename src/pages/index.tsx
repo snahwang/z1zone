@@ -1,31 +1,39 @@
 import { useState } from "react";
 import YouTubeAudioPlayer from "@/components/YouTubeAudioPlayer";
+import YouTubePlayer from "@/components/YouTubePlayer";
+import PersonQuiz from "@/components/PersonQuiz";
 
 export default function Home() {
 	const [selectedGame, setSelectedGame] = useState<string | null>(null);
+	const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+
+	const startMovieGame = () => {
+		setSelectedVideo("xQ9skQV3-DU");
+		setSelectedGame("movie-game");
+	};
 
 	return (
 		<div className="container">
-			{/* 🔥 Z-ZONE 오락실 제목 클릭 시 메인 화면으로 돌아감 */}
 			<h1 className="title" onClick={() => setSelectedGame(null)}>
-				Z1존 오락실
+				Z1존 오락실 🎮
 			</h1>
 
-			{/* 🔥 게임 선택 버튼 (메뉴) */}
 			{!selectedGame && (
 				<div className="game-menu">
 					<button onClick={() => setSelectedGame("music-game")}>🎵 음악 맞추기</button>
-					<button onClick={() => setSelectedGame("coming-soon")}>🎮 Coming Soon</button>
+					<button onClick={startMovieGame}>🎥 명대사 퀴즈</button>
+					<button onClick={() => setSelectedGame("person-quiz")}>🧑‍🎨 인물 퀴즈</button>
+					<button onClick={() => setSelectedGame("coming-soon")}>Coming Soon</button>
 				</div>
 			)}
 
-			{/* 🔥 선택한 게임 화면 표시 */}
 			<div className="game-container">
 				{selectedGame === "music-game" && <YouTubeAudioPlayer />}
+				{selectedGame === "movie-game" && selectedVideo && <YouTubePlayer videoId={selectedVideo} />}
+				{selectedGame === "person-quiz" && <PersonQuiz />}
 				{selectedGame === "coming-soon" && <p>🚀 새로운 게임이 곧 추가됩니다!</p>}
 			</div>
 
-			{/* 🔥 스타일 추가 */}
 			<style jsx>{`
 				.container {
 					text-align: center;
@@ -36,12 +44,12 @@ export default function Home() {
 					font-size: 32px;
 					font-weight: bold;
 					cursor: pointer;
-					color: #0070f3;
+					color: #ff9800;
 					transition: color 0.2s ease-in-out;
 				}
 
 				.title:hover {
-					color: #ff9800;
+					color: #d2691e;
 				}
 
 				.game-menu {
@@ -53,7 +61,7 @@ export default function Home() {
 					padding: 10px 20px;
 					font-size: 18px;
 					border: none;
-					background: #0070f3;
+					background: #ff9800;
 					color: white;
 					cursor: pointer;
 					border-radius: 10px;

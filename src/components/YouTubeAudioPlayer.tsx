@@ -283,7 +283,7 @@ const YouTubeAudioPlayer = () => {
 					padding: 10px 16px;
 					font-size: 16px;
 					border: none;
-					background: #0070f3;
+					background: #ff9800;
 					color: white;
 					cursor: pointer;
 					border-radius: 20px;
@@ -300,7 +300,7 @@ const YouTubeAudioPlayer = () => {
 				}
 
 				.keyword-button.selected {
-					background: #ff9800 !important; /* ✅ 선택된 버튼은 색상 변경 */
+					background: #d2691e !important;
 					color: white;
 					font-weight: bold;
 				}
